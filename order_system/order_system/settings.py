@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-from confic import SOCIAL_AUTH_GOOGLE, SOCIAL_AUTH_GOOGLE_SECRET, SOCIAL_AUTH_GITHUB, SOCIAL_AUTH_GITHUB_SECRET_CODE,PASSWORD
+from order_system.confic import SOCIAL_AUTH_GOOGLE, SOCIAL_AUTH_GOOGLE_SECRET, SOCIAL_AUTH_GITHUB, SOCIAL_AUTH_GITHUB_SECRET_CODE,PASSWORD
 from pathlib import Path
 import os  # 
 
@@ -24,9 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1xw2-u(d$wbm$hxdiyx5_k_wup&0f_seuvkczqlbh(a&_po9l%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
 
 # Application definition
@@ -63,7 +62,7 @@ ROOT_URLCONF = 'order_system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
