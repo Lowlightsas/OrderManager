@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Design by foolishdeveloper.com -->
+    <title>Login</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<style>
+  .social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.social-btn i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.google {
+    background:rgb(245, 90, 0);
+}
+
+.google:hover {
+    background: #c23321;
+}
+
+.github {
+    background: #333;
+}
+
+.github:hover {
+    background: #24292e;
+}
+
+</style>
+{% block content %}
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <h3>Login Here</h3>
+        {% if form.errors %}
+        <p>
+            Your username and password didn't match.
+            Please try again.
+          </p>
+        {% else %}
+        <p>Please, use the following form to log-in:</p>
+        {% endif %}
+        <div class="login-form">
+          <form action="{% url 'account:login' %}" method="post">
+            <h3>Login Here</h3>
+              {{ form.as_p }}
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ next }}" />
+              <p><input type="submit" value="Log-in"></p>
+            
+              <div class="social-login">
+                <a href="{% url 'social:begin' 'google-oauth2' %}" class="social-btn google">
+                    <i class="fab fa-google"></i>Google
+                </a>
+                
+            </div>
+            
+           
+              <p>
+                Don't have an account? 
+                <a href="{% url 'account:register' %}" class="register-btn">Register here</a>
+              </p>
+            </form>
+        </div>
+</body>
+</html>
+{% endblock %}

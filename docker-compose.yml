@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:14
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: order_manage
+      POSTGRES_USER: order_manage
+      POSTGRES_PASSWORD: light
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DEBUG=True
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - DB_NAME=order_manage
+      - DB_USER=order_manage
+      - DB_PASSWORD=light
+      - DB_HOST=db
+      - DB_PORT=5432
+    command: >
+      sh -c "python order_system/manage.py migrate &&
+             python order_system/manage.py runserver 0.0.0.0:8000"
+
+volumes:
+  postgres_data:
