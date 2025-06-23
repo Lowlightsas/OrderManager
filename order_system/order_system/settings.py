@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+from confic import SOCIAL_AUTH_GOOGLE, SOCIAL_AUTH_GOOGLE_SECRET, SOCIAL_AUTH_GITHUB, SOCIAL_AUTH_GITHUB_SECRET_CODE,PASSWORD
 from pathlib import Path
 import os  # 
 
@@ -153,7 +153,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sultanaevaakbota@gmail.com'
-EMAIL_HOST_PASSWORD = 'xzmq xjhg ujfp ojaw'
+EMAIL_HOST_PASSWORD = PASSWORD
 
 from django.urls import reverse_lazy
 ABSOLUTE_URL_OVERRIDES = {
@@ -168,12 +168,10 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.github.GithubOAuth2',
  ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316020887785-buiugiql9nmrrpba5jo9dn430uh1p1v9.apps.googleusercontent.com' # ИД клиента Google
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Секрет клиента Google
-SOCIAL_AUTH_GITHUB_KEY = 'Ov23li6WTK7lnD0Fh1Ly'  # Client ID из GitHub
-SOCIAL_AUTH_GITHUB_SECRET = '1ba6a5f03beeeee655c369038ae5511d78198939'  # Client Secret из GitHub
-
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SOCIAL_AUTH_GOOGLE
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SOCIAL_AUTH_GOOGLE_SECRET
+SOCIAL_AUTH_GITHUB_KEY =  SOCIAL_AUTH_GITHUB
+SOCIAL_AUTH_GITHUB_SECRET = SOCIAL_AUTH_GITHUB_SECRET_CODE
 
 SOCIAL_AUTH_PIPELINE = [
  'social_core.pipeline.social_auth.social_details',
